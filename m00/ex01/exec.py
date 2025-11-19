@@ -8,7 +8,7 @@ def reverse(*args):
         result += str(sys.argv[i])
         if (i != len(sys.argv) - 1):
             result +=  " "
-    result = result.swapcase()
+    result = result.swapcase()[::-1]
     print(result)
 
 reverse(sys.argv)
