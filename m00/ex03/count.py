@@ -1,3 +1,6 @@
+import sys
+
+
 def text_analyzer(*arg):
     """This function takes a string as a parameter and count
     the number of upper and lower letters, punctuation marks and spaces.
@@ -13,3 +16,10 @@ def text_analyzer(*arg):
     print(f"- {sum(1 for c in string if c.islower())} lower letter(s)")
     print(f"- {sum(1 for c in string if c in '.,;:?!')} punctuation mark(s)")
     print(f"- {sum(1 for c in string if c in ' ')} space(s)")
+
+
+if __name__ == "__main__":
+    if (len(sys.argv) == 1):
+        text_analyzer()
+    else:
+        text_analyzer(sys.argv[1])
