@@ -2,7 +2,13 @@ from sys import argv
 
 
 def operation(param):
-    assert param[1].isnumeric() and param[2].isnumeric(), "only integers"
+    try:
+        assert len(param) <= 3, "too many arguments"
+        assert len(param) >= 3, "too few arguments"
+        assert param[1].isnumeric() and param[2].isnumeric(), "only integers"
+    except AssertionError as e:
+        print(f"AssertionError: {e}")
+        exit(1)
 
     a = int(param[1])
     b = int(param[2])
@@ -14,9 +20,8 @@ def operation(param):
         print(f"Quotient:\t {a / b}")
         print(f"Remainder:\t {a % b}")
     except ZeroDivisionError:
-        print("ERROR (division by zero)")
-        print("ERROR (remainer by zero)")
+        print("Quotient:\t ERROR (division by zero)")
+        print("Remainder\t ERROR (modulo by zero)")
 
 
-if (len(argv) == 3):
-    operation(argv)
+operation(argv)
