@@ -1,4 +1,7 @@
 def text_analyzer(*arg):
+    """This function takes a string as a parameter and count
+    the number of upper and lower letters, punctuation marks and spaces.
+    If no argument is provided, the function ask for input from the user."""
     assert len(arg) <= 1, "too many arguments"
     if (len(arg) == 1):
         assert isinstance(arg[0], str), " argument is not a string"
