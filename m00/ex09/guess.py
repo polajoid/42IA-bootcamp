@@ -9,6 +9,7 @@ def guess():
             answer = input("What's yout guess between 1 and 99?\n")
             i += 1
             if (answer == "exit"):
+                print("Bye bye!")
                 exit(0)
             assert answer.isnumeric()
         except (EOFError, AssertionError):
@@ -19,7 +20,12 @@ def guess():
         elif (int(answer) < n):
             print("Too Low!\n")
         else:
-            print(f"Amazing! You found in {i} rounds\n")
+            if (n == 42):
+                print("The answer to the ultimate question of life")
+            if (i == 1):
+                print("Perfect! You found on your first try!")
+            else:
+                print(f"Amazing! You found in {i} rounds\n")
             break
 
 
