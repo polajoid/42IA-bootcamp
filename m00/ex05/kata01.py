@@ -4,4 +4,5 @@ kata = {
     'PHP': 'Rasmus Lerdorf',
 }
 
-print(f"{x} was created by {kata[x]}".format(" ".join(x, kata[x] for x in kata)))
+for x in kata:
+    print(f"{x} was created by {kata[x]}")
