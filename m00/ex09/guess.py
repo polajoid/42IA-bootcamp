@@ -8,6 +8,8 @@ def guess():
         try:
             answer = input("What's yout guess between 1 and 99?\n")
             i += 1
+            if (answer == "exit"):
+                exit(0)
             assert answer.isnumeric()
         except (EOFError, AssertionError):
             print("Wrong. Try again\n")
