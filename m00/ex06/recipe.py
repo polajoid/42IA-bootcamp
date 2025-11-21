@@ -22,19 +22,27 @@ def print_cookbook():
         print(r)
 
 
-def print_recipe(name):
-    if (name in cookbook):
-        print(cookbook[name])
-    else:
-        print("Recipe not in cookbook")
+def print_recipe():
+    try:
+        name = input("Please enter a recipe name to get its details\n")
+        if (name in cookbook):
+            print(cookbook[name])
+        else:
+            print("Recipe not in cookbook")
+    except EOFError:
+        print("Eof. No print")
 
 
-def delete_recipe(name):
-    if (name in cookbook):
-        del cookbook[name]
-        print(f"Recipe {name} correctly deleted")
-    else:
-        print("Recipe not in cookbook")
+def delete_recipe():
+    try:
+        name = input("Please enter a recipe name to delete it\n")
+        if (name in cookbook):
+            del cookbook[name]
+            print(f"Recipe {name} correctly deleted")
+        else:
+            print("Recipe not in cookbook")
+    except EOFError:
+        print("Eof. No delete")
 
 
 def add_recipe():
@@ -50,8 +58,36 @@ def add_recipe():
     while True:
         prep_time = input("Enter a preparation time:\n")
         if not prep_time.isnumeric():
-            print("Wrong input")
+            print("Numeric input only")
+        elif int(prep_time) <= 0:
+            print("Strictly positive number only")
         else:
+            prep_time = int(prep_time)
             break
     cookbook[key] = {"ingredients": ingredients,
                      "meal": meal, "prep_time": prep_time}
+
+
+def nice_quit():
+    print("Closing phonebook. Bye Bye!")
+    exit(0)
+
+
+options = ["Add a recipe", "Delete a recipe",
+           "Print a recipe", "Print the cookbook", "Quit"]
+function = [add_recipe, delete_recipe, print_recipe, print_cookbook, nice_quit]
+print("Welcome to the Python Cookbook!")
+while True:
+    print("\nList of avalaible options:")
+    for number, option in enumerate(options, start=1):
+        print(f"{number}. {option}")
+    print("")
+    try:
+        while True:
+            answer = input("Please select an option:\n")
+            if answer.isnumeric():
+                break
+            print("Please, choose option with index number\n\n")
+        function[int(answer) - 1]()
+    except EOFError:
+        nice_quit()
