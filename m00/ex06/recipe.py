@@ -26,7 +26,10 @@ def print_recipe():
     try:
         name = input("Please enter a recipe name to get its details\n")
         if (name in cookbook):
-            print(cookbook[name])
+            print(f"Recipe for {name}")
+            print(f"Ingredient list : {cookbook[name]['ingredients']}")
+            print(f"To be eatean for {cookbook[name]['meal']}")
+            print(f"Takes {cookbook[name]['prep_time']} minutes of cooking")
         else:
             print("Recipe not in cookbook")
     except EOFError:
@@ -46,26 +49,29 @@ def delete_recipe():
 
 
 def add_recipe():
-    key = input("Enter a name:\n")
-    ingredients = []
-    answer = input("Enter ingredients:\n")
-    while True:
-        if not answer:
-            break
-        ingredients.append(answer)
-        answer = input("")
-    meal = input("Enter a meal type:\n")
-    while True:
-        prep_time = input("Enter a preparation time:\n")
-        if not prep_time.isnumeric():
-            print("Numeric input only")
-        elif int(prep_time) <= 0:
-            print("Strictly positive number only")
-        else:
-            prep_time = int(prep_time)
-            break
-    cookbook[key] = {"ingredients": ingredients,
-                     "meal": meal, "prep_time": prep_time}
+    try:
+        key = input("Enter a name:\n")
+        ingredients = []
+        answer = input("Enter ingredients:\n")
+        while True:
+            if not answer:
+                break
+            ingredients.append(answer)
+            answer = input("")
+        meal = input("Enter a meal type:\n")
+        while True:
+            prep_time = input("Enter a preparation time:\n")
+            if not prep_time.isnumeric():
+                print("Numeric input only")
+            elif int(prep_time) <= 0:
+                print("Strictly positive number only")
+            else:
+                prep_time = int(prep_time)
+                break
+        cookbook[key] = {"ingredients": ingredients,
+                         "meal": meal, "prep_time": prep_time}
+    except EOFError:
+        print("EOF detected. Redo")
 
 
 def nice_quit():
