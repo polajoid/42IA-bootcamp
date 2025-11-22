@@ -3,7 +3,7 @@ from time import sleep
 
 
 def ft_progress(lst):
-    for i in tqdm(lst, desc="ETA: ", ascii=" >="):
+    for i in tqdm(lst, desc="ETA: ", total=len(lst), ascii=" >="):
         yield i
 
 
